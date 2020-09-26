@@ -1,0 +1,34 @@
+void ejercicio1(){
+
+  // Let's open the TFile
+  TFile *file = TFile::Open("Tracks_Clusters.root");
+  TTree *tree = (TTree*) file->Get("JetRecoTree");
+  tree->Print();
+
+  //UInt_t npv = -1;
+  vector<float> *mu_average=0;
+  //tree->SetBranchAddress("NPV", &npv);
+  tree->SetBranchAddress("mu_average", &mu_average);
+ 
+  TCanvas *canvas = new TCanvas("Canvas","a first way to plot a variable",800,600);
+
+  //TH1F *hist_npv = new TH1F("NPV","Example plot: Number of primary vertices; NPV ; Events ",50,1,50);
+  TH1F *hist_muavg = new TH1F("mu_average","Example plot: Mu average; NPV ; Events ",50,1,50);
+
+  int nentries, nbytes, i;
+  nentries = (Int_t)tree->GetEntries();
+
+  for (i = 0; i < nentries; i++)
+    {
+      nbytes = tree->GetEntry(i);
+      //hist_npv->Fill(npv);
+      hist_muavg->Fill(mu_average->size())
+    }
+
+  std::cout << "Done!" << std::endl;
+
+  hist_muavg->SetFillColor(44);
+  hist_muavg->Draw();
+  canvas->Draw();
+
+}

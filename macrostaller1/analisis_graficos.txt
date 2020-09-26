@@ -1,0 +1,15 @@
+Momento transvertso pt:
+Las partículas de mayor momento transversal son las que menos presentan eventos, esto debido a que para generarlas se requiere una energía mucho mayor. Todos los eventos en los tracks se dan para momentos tranversales de entre 500 Mev y 2 TeV, igualmente los eventos para los clusters . En ambos casos se muestra que las detecciones son menores a energías mayores, y que son mayores en un intervalo entre 600 y 800 MeV para el caso de los cluster., mostrando esto el comportamiento gaussiano del calorimetro.
+Eta:
+La pseudo rapidity para las particulas detectadas oscila entre -5 y 5 para el caso de los cluster, lo que significa que estas se dispersan alrededor de angulos cercanos a 0 grados y hasta ángulos cercanos a pi de manera simetrica, para los tracks se detectan eventos en un intervalo que corresponde a -2,9 y 2,9 de manera que el angulo de impacto de los eventos es más restringido en este caso siendo la mayor cantidad de eventos detectados en  angulos cercanos a pi/2 con respecto al ángulo polar. Finalmente, es importante notar que para las partículas se muestra una gran simetria en el aparato,como lo muestra el conteo de los impactos en ese caso.
+Phi:
+Las gráficas en phi muestran que los eventos se detectan lo largo de todo el circulo que forma el calorimetro de manera simetrica. De la misma manera para los Tracks con el detalle agregado de para este caso los datos son mas "suaves", explicado esto por el hecho de que por la naturaleza de la medida en el calorimetro es posible que este presente más ruido en los eventos.
+M:
+La variable M se refiere a la masa que corresponde al evento que se detecta en los tracks, siendo entonces la masa medida en los tracks la masa de la partícula detectada en el vertice principal, masa que no difiere mucho  a la que se detecta en los calorímetros salvo unos. En el rubro de partículas se detecta un pico en 0 que debería corresponder a fotones, uno en 457 que puede corresponder a kaones y una masa intermedia entre estos últimos y los fotones, pudiendo ser esto algún tipo de mesón ligero. En menor medida se notan masas mayores a 1 TEV.
+Tracks vtx:
+vtx corresponde al número de vertices que recopila cada track,en este caso se presenta un vertice principal situado en -1 y a partir de alli otros vertices detectados al rededor de 1 y 5, de menor energía. Y alrededor de 15 y 20 con mucha menor energía, se asume entonces que el vertíce primario corresponde al ubicado en -1.
+
+PdgId:
+El grafico que corresponde con los id del particle data group da cuenta de que en el proceso al parecer intervinieron un kaón neutro, un mesón y un fotón , fuera de otras particulas de menor energía conocidas como a2(1302). Esta interpretación parece ser correcta ya que en las masas detectadas para las partículas hay un pico correspondiente a cerca de 497 MeV, la masa del kaón.
+
+ 
