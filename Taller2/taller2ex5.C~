@@ -1,0 +1,71 @@
+void taller2ex5(){
+
+  // Let's open the TFile
+  TFile *file = TFile::Open("Tracks_Clusters.root");
+  TTree *tree = (TTree*) file->Get("JetRecoTree");
+  tree->Print();
+
+  //UInt_t npv = -1;
+  //tree->SetBranchAddress("NPV", &npv);
+  //vector<float> *tracks_pt;
+  float evtw = -1;
+  vector<float> *reco_R10_pt=0;
+  vector<float> *truth_R10_pt=0;
+  vector<float> *truth_R10_trimmed_pt=0;
+  vector<float> *reco_R10_trimmed_pt=0;
+  tree->SetBranchAddress("EventWeight", &evtw);
+  tree->SetBranchAddress("RecoJets_R10_pt", &reco_R4_pt);
+  tree->SetBranchAddress("TruthJets_R10_pt", &truth_R4_pt);
+  tree->SetBranchAddress("RecoJets_R10_Trimmed_pt", &reco_R10_trimmed_pt);
+  tree->SetBranchAddress("TruthJets_R10_Trimmed_pt", &truth_R10_trimmed_pt);
+  TH1F *hist_leadreco_pt = new TH1F("Lead Reco-jet","Leading jet pT; pT(GeV);Events",50,10,200);
+  TH1F *hist_reco_trimmed_pt = new TH1F("Reco-jet Trimmed","Jet pT; pT(GeV);Events",50,10,200);
+  TH1F *hist_leadtruth_pt = new TH1F("Lead Truth-jet","Jet pT; pT(GeV);Events",50,10,200);
+  TH1F *hist_truth_trimmed_pt = new TH1F("Truth-jet Trimmed","Jet pT; pT(GeV);Events",50,10,200);
+  int nentries, nbytes, i;
+  nentries = (Int_t)tree->GetEntries();
+
+  for (i = 0; i < nentries; i++)
+    {
+      nbytes = tree->GetEntry(i);
+      if(reco_R10_pt->size()>0){
+	hist_leadreco_pt->Fill(reco_R10_pt->at(0)/1000.,evtw);
+	
+	for(int j=0; j<reco_R10_trimmed_pt->size(); j++){
+	  hist_reco_trimmed_pt->Fill(reco_R10_pt->at(j)/1000.,evtw);
+	}
+      }
+      if(truth_R10_pt->size()>0){
+	hist_leadtruth_pt->Fill(reco_R10_pt->at(0)/1000.,evtw);
+
+	for(int j=0; j<truth_R10_trimmed_pt->size(); j++){
+	  hist_truth_trimmed_pt->Fill(truth_R10_pt->at(j)/1000.,evtw);
+	}
+      }
+      
+    }
+
+  std::cout << "Done!" << std::endl;
+  //legends
+  auto legend = new TLegend(0.1,0.7,0.48,0.9);
+  legend->SetHeader("R10 lead and trimmed Pts","C"); // option "C" allows to center the header
+  legend->AddEntry(hist_leadreco_pt,"Lead Reco");
+  legend->AddEntry(hist_reco_trimmed_pt,"Reco Trimmed");
+  legend->AddEntry(hist_leadtruth_pt,"Lead Truth  pt");
+  legend->AddEntry(hist_truth_trimmed_pt,"Truth Trimmed pt");
+  legend->Draw();
+
+  hist_reco_trimmed_pt->SetMarkerStyle(20);
+  hist_reco_trimmed_pt->SetMarkerColor(kRed);
+  hist_reco_trimmed_pt->Draw("");
+  hist_leadreco_pt->SetMarkerStyle(21);
+  hist_leadreco_pt->SetMarkerColor(Kblue);
+  hist_truth_trimmed_pt->SetMarkerStyle(22);
+  hist_truth_trimmed_pt->SetMarkerColor(kOrange);
+  hist_truth_trimmed_pt->Draw("same");
+  hist_leadtruth_pt->SetMarkerStyle(23);
+  hist_leadtruth_pt->SetMarkerColor(KGreen);
+  hist_leadtruth_pt->Draw("same");
+  canvas->SetLogy();
+  canvas->Draw();
+}
